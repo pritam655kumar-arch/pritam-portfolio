@@ -2,7 +2,7 @@
 import './App.css'
 
 const email='pritamkumar.singh1403@gmail.com'
-const resume='/Pritam_Kumar_Singh_Resume.pdf'
+const resume='/Pritam%20Kumar%20Singh%20Resume.pdf'
 const linkedin='https://www.linkedin.com/in/pritamkumarba/'
 const skills=['Requirements Elicitation','BRD','User Stories','Gap Analysis','Process Mapping','Agile and Scrum','Backlog Management','UAT Coordination','Stakeholder Management','Project Management','Wireframing','Client Communication','Analytical Thinking','Miro','Wrike','NetSuite','Postman']
 const experience=[
