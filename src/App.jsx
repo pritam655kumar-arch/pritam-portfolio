@@ -1,38 +1,30 @@
-import React from 'react'
-import Preloader from './components/Preloader'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import TechnicalSkills from './components/TechnicalSkills'
-import Services from './components/Services'
-import Projects from './components/Projects'
-import ContentCreator from './components/ContentCreator'
-import Internships from './components/Internships'
-import Leadership from './components/Leadership'
-import Certificates from './components/Certificates'
-import SoftSkills from './components/SoftSkills'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+﻿import { useRef, useState } from 'react'
+import './App.css'
 
-function App() {
-  return (
-    <>
-      <Preloader />
-      <Navbar />
-      <Hero />
-      <About />
-      <TechnicalSkills />
-      <Services />
-      <Projects />
-      <ContentCreator />
-      <Internships />
-      <Leadership />
-      <Certificates />
-      <SoftSkills />
-      <Contact />
-      <Footer />
-    </>
-  )
+const email='pritamkumar.singh1403@gmail.com'
+const resume='/Pritam_Kumar_Singh_Resume.pdf'
+const linkedin='https://www.linkedin.com/in/pritamkumarba/'
+const skills=['Requirements Elicitation','BRD','User Stories','Gap Analysis','Process Mapping','Agile and Scrum','Backlog Management','UAT Coordination','Stakeholder Management','Project Management','Wireframing','Client Communication','Analytical Thinking','Miro','Wrike','NetSuite','Postman']
+const experience=[
+ ['Business Analyst','CuriousRubik (RIOO — In-house Product and Client Delivery)','Mar 2025 – Present',['Own the business-analysis lifecycle for RIOO, from requirements gathering and wireframe design through UAT sign-off, release coordination, and post-launch analysis.','Manage and prioritise the product backlog and handle change requests through structured change control.','Create BRDs, user stories, acceptance criteria, process diagrams, and user journey maps.','Coordinate UAT, test cases, defect tracking, release KPIs, and stakeholder communication.','Collaborate with US-based stakeholders and cross-functional teams on delivery, product integration, and UI/UX redesign work.','Use SQL to analyse product and operational data for decision-making and process standardisation.']],
+ ['Finance Intern','Jindal Steel & Power Ltd.','Feb 2024 – May 2024',['Mapped and documented Letter of Credit workflows in SAP, including payment terms, compliance checkpoints, and transaction flows.','Supported workflow automation for payment reconciliation and finance-team operations.','Collaborated with audit teams on payroll workflow analysis using Tally ERP and produced structured process documentation.']]
+]
+const education=[['MBA — Finance','ICFAI Business School','May 2023 – Feb 2025','Domain: Finance'],['BBA','ASBM University','2020 – 2023','Domain: General']]
+const certificates=['Bloomberg Market Concepts (BMC)','Tata Steel TomorrowLab SUSTAIN-A-THON 2024','BRIDGE Campus Learning Series — Power of Narrative in Crafting Business']
+
+function App(){
+ const video=useRef(null); const [playing,setPlaying]=useState(false); const [failed,setFailed]=useState(false); const [muted,setMuted]=useState(true)
+ const toggle=()=>{if(!video.current||failed)return;if(video.current.paused){video.current.muted=false;setMuted(false);video.current.play().then(()=>setPlaying(true)).catch(()=>setFailed(true))}else{video.current.pause();setPlaying(false)}}
+ return <main>
+  <nav className="fixed top-0 z-50 w-full px-6 py-5 flex justify-between bg-black/30 backdrop-blur-md text-white"><a href="#home" className="font-black text-xl">Pritam<span className="text-red-500">.</span></a><div className="hidden md:flex gap-6 text-sm"><a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#contact">Contact</a></div><a href={`mailto:${email}`} className="border border-white/30 rounded-full px-4 py-1.5 text-sm">Email Me</a></nav>
+  <section id="home" className="relative min-h-screen bg-black overflow-hidden flex items-end"><img src="/pritam-hero-image.png" alt="Pritam Kumar Singh" className="absolute inset-0 w-full h-full object-cover"/>{!failed&&<video ref={video} poster="/pritam-hero-image.png" muted={muted} playsInline loop onError={()=>setFailed(true)} onPause={()=>setPlaying(false)} className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${playing?'opacity-100':'opacity-0'}`}><source src="/pritam-hero-video.mp4" type="video/mp4"/></video>}<div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/30 to-transparent"/><div className="relative z-10 p-6 md:p-12 pb-20 max-w-2xl text-white"><p className="uppercase tracking-[.2em] text-sm mb-3">Hyderabad, India</p><h1 className="text-4xl md:text-6xl font-black">Hi, I’m Pritam Kumar Singh,<br/><span className="text-red-400">Business Analyst</span></h1><p className="mt-5 text-lg">Business Analyst at CuriousRubik. Turning stakeholder needs into clear requirements, practical delivery plans, and measurable product outcomes.</p><div className="flex flex-wrap gap-3 mt-8"><a className="bg-white text-black rounded-full px-5 py-3 font-bold" href="#experience">View Experience</a><a className="border border-white rounded-full px-5 py-3 font-bold" href={`mailto:${email}`}>Email Me</a><a className="border border-white/70 rounded-full px-5 py-3 font-bold" href={resume} download>Download Resume</a></div></div>{!failed&&<button onClick={toggle} className="absolute z-20 right-6 bottom-8 md:right-12 md:bottom-12 rounded-full border border-white/50 bg-black/40 text-white px-5 py-3">{playing?'Pause':'Play Reel'}</button>}</section>
+  <section id="about" className="bg-[#ff2a2a] py-24 px-6 md:px-12 text-white"><div className="max-w-5xl mx-auto"><h2 className="text-4xl font-black text-black mb-6">Hello!</h2><p className="text-xl leading-relaxed max-w-4xl">At CuriousRubik, I work as a Business Analyst on RIOO, our in-house property management SaaS, as well as external client projects. I help turn business needs into clear requirements, keep the backlog organised, coordinate UAT, and support smooth releases in Agile/Scrum teams.</p></div></section>
+  <section id="skills" className="bg-[#0a0a0a] py-24 px-6 md:px-12 text-white"><div className="max-w-6xl mx-auto"><p className="text-red-400 uppercase tracking-widest text-sm">Capabilities</p><h2 className="text-4xl font-black mt-3 mb-10">Skills</h2><div className="flex flex-wrap gap-3">{skills.map(x=><span key={x} className="rounded-full border border-white/15 bg-white/5 px-4 py-2">{x}</span>)}</div></div></section>
+  <section id="experience" className="bg-[#ff2a2a] py-24 px-6 md:px-12"><div className="max-w-6xl mx-auto"><h2 className="text-4xl font-black text-black mb-10">Experience</h2><div className="grid gap-6">{experience.map(([role,company,date,items])=><article key={company} className="rounded-3xl bg-black/85 p-7 md:p-10 text-white"><p className="text-red-300 text-sm font-bold">{date}</p><h3 className="text-2xl font-black mt-3">{role}</h3><p className="font-semibold text-white/70 mb-5">{company}</p><ul className="list-disc pl-5 space-y-3 text-white/85">{items.map(x=><li key={x}>{x}</li>)}</ul></article>)}</div></div></section>
+  <section id="education" className="bg-[#0a0a0a] py-24 px-6 md:px-12 text-white"><div className="max-w-6xl mx-auto"><h2 className="text-4xl font-black mb-10">Education</h2><div className="grid md:grid-cols-2 gap-6">{education.map(([degree,school,date,detail])=><article key={degree} className="rounded-2xl border border-white/15 bg-white/5 p-7"><p className="text-red-400 text-sm">{date}</p><h3 className="font-black text-2xl mt-3">{degree}</h3><p className="text-white/70">{school}</p>{detail&&<p className="text-white/50 mt-5">{detail}</p>}</article>)}</div></div></section>
+  <section className="bg-[#ff2a2a] py-24 px-6 md:px-12"><div className="max-w-6xl mx-auto"><h2 className="text-4xl font-black text-black mb-10">Certificates</h2><div className="grid md:grid-cols-3 gap-5">{certificates.map(x=><article key={x} className="rounded-2xl bg-black/85 p-6 text-white font-bold">{x}</article>)}</div></div></section>
+  <section id="contact" className="bg-[#0a0a0a] py-24 px-6 md:px-12 text-white"><div className="max-w-5xl mx-auto"><h2 className="text-5xl font-black">Contact</h2><p className="mt-5 text-lg text-white/70">For Business Analyst or Consultant opportunities, please get in touch by email or LinkedIn.</p><div className="flex flex-wrap gap-4 mt-8"><a href={`mailto:${email}`} className="rounded-full bg-[#ff2a2a] px-6 py-3 font-bold">Email {email}</a><a href={linkedin} target="_blank" rel="noreferrer" className="rounded-full border border-white/40 px-6 py-3 font-bold">LinkedIn</a></div></div></section>
+  <footer className="bg-[#111] py-14 px-6 md:px-12 text-white overflow-hidden"><div className="max-w-6xl mx-auto"><p>Business Analysis and Agile Delivery</p><h2 className="mt-8 text-6xl sm:text-8xl md:text-[10vw] leading-[0.8] font-black tracking-tighter lowercase">pritam</h2><p className="mt-8 text-white/60">© {new Date().getFullYear()} Pritam Kumar Singh</p></div></footer>
+ </main>
 }
-
 export default App
